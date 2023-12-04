@@ -1,29 +1,22 @@
 # DIAGRAMA DE FLUJO
-graph TD
+graph TD;
 
-A[Inicio] --> B[Start/Reset]
-B --> C
-C[ColorEnviado + Colores] --> D[+Color]
-D --> E
-E["Colores"] --> F[WaitColoresPulsados]
-F --> G
-G[AumentarColores] --> H{BotonEnviadoPulsado}
-H --> |NO| E
-H --> |SÍ| I[enviarDatos]
-I --> J{Colores==ColorEnviado}
-J --> |NO| K[Perdiste]
-K --> L[FIN]
-J --> |SÍ| M[aumentarRonda]
-M --> C
+Inicio-->Turno_Inicia_color_random
+Turno_Inicia_color_random-->Genera_color_random
+Genera_color_random-->Muestra_el_o_los_colores_random
+Muestra_el_o_los_colores_random-->Correcto-->no
+Correcto-->si-->Genera_color_random
 
 
-# DIAGRAMA DE ESTADO
-stateDiagram
-    [*] --> START
-    START --> SECUENCIA : Iniciar
-    SECUENCIA --> WAIT : 
-    WAIT --> INPUT : 
-    INPUT --> COMPROBAR : 
-    COMPROBAR --> SECUENCIA : SÍ
-    COMPROBAR --> PERDER : NO
-    PERDER --> START : 
+
+# DIAGRAMA DE ESTADOç
+graph TD;
+
+Start-->Sequence
+Sequence-->Wait
+Wait-->Input
+Input-->Checking
+Checking-->|Error| GameOver
+Checking-->|Correcto| Sequence
+
+
